@@ -135,9 +135,9 @@ def view_image():
 
     sub = tkinter.Tk()
     sub.title("subです")  
-    list_disp(filenames)
+    sub.geometry("1200x500")
+    list_disp(filenames,sub)
 
-    sub.geometry("500x300")
 
 
     sub.mainloop()
@@ -170,12 +170,12 @@ def select_one_image(n):
     root_one.mainloop()
 
 
-def list_disp(filenames):
+def list_disp(filenames,sub):
 
-    root_list = tkinter.Tk()
-    root_list.title("root_listです")  
-    root_list.geometry("1x1")
-    root_list.configure(bg="white")
+    #root_list = tkinter.Tk()
+    #root_list.title("root_listです")  
+    #root_list.geometry("1x1")
+    #root_list.configure(bg="white")
     value = tkinter.StringVar()
     frame = tkinter.Frame(master=None)
     scrollbar = tkinter.Scrollbar(master=frame, orient="vertical")
@@ -183,7 +183,7 @@ def list_disp(filenames):
     for name in filenames:
         listbox.insert(tkinter.END, name)
     scrollbar.config(command=listbox.yview)
-    label = tkinter.Label(master=root_list, textvariable=value,  fg="black", bg="white", height=3, width=15)
+    label = tkinter.Label(master=sub, textvariable=value,  fg="black", bg="white", height=3, width=15)
     frame.pack(padx=50,pady=100)
     scrollbar.pack(side=tkinter.RIGHT, fill="y")
     listbox.pack(padx=480)
@@ -191,7 +191,7 @@ def list_disp(filenames):
     listbox.bind("<<ListboxSelect>>", get_index)
  
     #root_list.after(100, lambda: root_list.destroy())
-    root_list.mainloop()
+    sub.mainloop()
 
 root_main= tkinter.Tk()  
 image_gui(root_main)  
