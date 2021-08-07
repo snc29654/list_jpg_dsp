@@ -137,7 +137,7 @@ def view_image():
     sub.title("subです")  
     list_disp(filenames)
 
-    sub.geometry("640x300")
+    sub.geometry("500x300")
 
 
     sub.mainloop()
@@ -149,7 +149,7 @@ def select_one_image(n):
 
     root_one = tkinter.Tk()
     root_one.title("root_oneです")  
-    root_one.geometry("850x300")
+    root_one.geometry("1x1")
 
     txt2 = tk.Entry(width=100)
     txt2.place(x=90, y=400)
@@ -184,9 +184,9 @@ def list_disp(filenames):
         listbox.insert(tkinter.END, name)
     scrollbar.config(command=listbox.yview)
     label = tkinter.Label(master=root_list, textvariable=value,  fg="black", bg="white", height=3, width=15)
-    frame.pack(padx=100,pady=100)
+    frame.pack(padx=50,pady=100)
     scrollbar.pack(side=tkinter.RIGHT, fill="y")
-    listbox.pack(padx=500)
+    listbox.pack(padx=480)
     label.pack(pady=200, side="bottom")
     listbox.bind("<<ListboxSelect>>", get_index)
  
