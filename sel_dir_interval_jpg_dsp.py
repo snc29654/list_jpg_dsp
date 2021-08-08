@@ -153,11 +153,9 @@ def list_disp(filenames,sub):
     for name in filenames:
         listbox.insert(tkinter.END, name)
     scrollbar.config(command=listbox.yview)
-    label = tkinter.Label(master=sub, textvariable=value,  fg="black", bg="white", height=3, width=15)
     frame.pack(side=RIGHT, anchor=NW)
     scrollbar.pack(side=tkinter.RIGHT, fill="y")
     listbox.pack(side=tk.LEFT)
-    label.pack(pady=200, side="bottom")
     listbox.bind("<<ListboxSelect>>", get_index)
  
     sub.mainloop()
