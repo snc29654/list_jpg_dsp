@@ -146,7 +146,6 @@ def select_one_image(n):
 
 def list_disp(filenames,sub):
 
-    value = tkinter.StringVar()
     frame = tkinter.Frame(master=None)
     scrollbar = tkinter.Scrollbar(master=frame, orient="vertical")
     listbox = tkinter.Listbox(master=frame,  bg="white", height=25, yscrollcommand=scrollbar.set)
@@ -157,10 +156,8 @@ def list_disp(filenames,sub):
     scrollbar.pack(side=tkinter.RIGHT, fill="y")
     listbox.pack(side=tk.LEFT)
     listbox.bind("<<ListboxSelect>>", get_index)
-    
  
-    sub.mainloop()
-
+ 
 root_main= tkinter.Tk()  
 image_gui(root_main)  
 root_main.title("rootです")  
