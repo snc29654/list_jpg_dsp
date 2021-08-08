@@ -50,9 +50,6 @@ class image_gui():
 
         #文字色、背景色、サイズ、フォントを指定。
         font1 = font.Font(family='Helvetica', size=12, weight='bold')
-        label2 = tkinter.Label(root_main, text="インターバル(秒）", fg="red", bg="white", font=font1)
-        label2.pack(side="top")
-        label2.place(x=100, y=28) 
 
         label4 = tkinter.Label(root_main, text="サイズ倍率", fg="red", bg="white", font=font1)
         label4.pack(side="top")
@@ -61,21 +58,9 @@ class image_gui():
 
 
     def button1_clicked(self):  
-        global interval
-        interval =txt2.get()
         global sizerate
         sizerate =txt4.get()
         
-        if interval=="":
-            txt3.insert(tkinter.END,str(interval)+"インターバルが未設定です。")
-        else:
-            txt3.insert(tkinter.END,str(interval)+"秒 に設定しています。" )
-
-        if sizerate=="":
-            txt3.insert(tkinter.END,str(interval)+"倍率が未設定です。")
-        else:
-            txt3.insert(tkinter.END,str(interval)+"倍に設定しています。" )
-
 
         global filenames
         ini_dir = 'C:'
@@ -90,19 +75,9 @@ class image_gui():
     def button3_clicked(self):  
         global filenames
         global interval
-        interval =txt2.get()
         global sizerate
         sizerate =txt4.get()
         
-        if interval=="":
-            txt3.insert(tkinter.END,str(interval)+"インターバルが未設定です。")
-        else:
-            txt3.insert(tkinter.END,str(interval)+"秒 に設定しています。" )
-
-        if sizerate=="":
-            txt3.insert(tkinter.END,str(interval)+"倍率が未設定です。")
-        else:
-            txt3.insert(tkinter.END,str(interval)+"倍に設定しています。" )
 
 
         fTyp = [('', '*')] 
@@ -165,17 +140,12 @@ def select_one_image(n):
     canvas.itemconfig(item,image=img2)
     txt2.delete(0, tk.END)
     txt2.insert(tk.END,n)
-    #list_disp(filenames)
     root_one.after(10, lambda: root_one.destroy())
     root_one.mainloop()
 
 
 def list_disp(filenames,sub):
 
-    #root_list = tkinter.Tk()
-    #root_list.title("root_listです")  
-    #root_list.geometry("1x1")
-    #root_list.configure(bg="white")
     value = tkinter.StringVar()
     frame = tkinter.Frame(master=None)
     scrollbar = tkinter.Scrollbar(master=frame, orient="vertical")
@@ -186,29 +156,23 @@ def list_disp(filenames,sub):
     label = tkinter.Label(master=sub, textvariable=value,  fg="black", bg="white", height=3, width=15)
     frame.pack(padx=50,pady=100)
     scrollbar.pack(side=tkinter.RIGHT, fill="y")
-    listbox.pack(padx=480)
+    listbox.pack(side=tk.LEFT)
     label.pack(pady=200, side="bottom")
     listbox.bind("<<ListboxSelect>>", get_index)
  
-    #root_list.after(100, lambda: root_list.destroy())
     sub.mainloop()
 
 root_main= tkinter.Tk()  
 image_gui(root_main)  
 root_main.title("rootです")  
 root_main.geometry("850x300") 
-txt2 = tkinter.Entry(width=10)
-txt2.place(x=10, y=30)
-txt2.insert(tkinter.END,"1.0")
+
 
 txt4 = tkinter.Entry(width=10)
 txt4.place(x=330, y=30)
 txt4.insert(tkinter.END,"1.0")
 
 
-txt3 = tkinter.Entry(width=80)
-txt3.place(x=10, y=60)
-txt3.insert(tkinter.END,"")
 
 root_main.mainloop()
 
