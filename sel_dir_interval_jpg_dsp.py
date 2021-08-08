@@ -110,7 +110,7 @@ def view_image():
 
     sub = tkinter.Tk()
     sub.title("subです")  
-    sub.geometry("1200x500")
+    sub.geometry("800x500")
     list_disp(filenames,sub)
 
 
@@ -126,8 +126,8 @@ def select_one_image(n):
     root_one.title("root_oneです")  
     root_one.geometry("1x1")
 
-    txt2 = tk.Entry(width=100)
-    txt2.place(x=90, y=400)
+    txt2 = tk.Entry(width=50)
+    txt2.place(x=0, y=400)
     img2 = Image.open(n)
     before_x, before_y = img2.size[0], img2.size[1]
     x = int(round(float(300 / float(before_y) * float(before_x))))
@@ -149,12 +149,12 @@ def list_disp(filenames,sub):
     value = tkinter.StringVar()
     frame = tkinter.Frame(master=None)
     scrollbar = tkinter.Scrollbar(master=frame, orient="vertical")
-    listbox = tkinter.Listbox(master=frame,  bg="white", height=15, yscrollcommand=scrollbar.set)
+    listbox = tkinter.Listbox(master=frame,  bg="white", height=25, yscrollcommand=scrollbar.set)
     for name in filenames:
         listbox.insert(tkinter.END, name)
     scrollbar.config(command=listbox.yview)
     label = tkinter.Label(master=sub, textvariable=value,  fg="black", bg="white", height=3, width=15)
-    frame.pack(padx=50,pady=100)
+    frame.pack(side=RIGHT, anchor=NW)
     scrollbar.pack(side=tkinter.RIGHT, fill="y")
     listbox.pack(side=tk.LEFT)
     label.pack(pady=200, side="bottom")
