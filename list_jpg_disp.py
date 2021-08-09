@@ -28,7 +28,8 @@ interval = 1.0
 sizerate = 1.0
 filenames =[]
 select_file=[]
-
+sizerate = 1.0
+n_old=[]
 angle=0
 
 #最初の画面のクラス
@@ -96,6 +97,7 @@ index_before = 0
 def get_index(event):
     global angle
     global index_before   
+    global n_old
 
     value = tkinter.StringVar()
  
@@ -105,6 +107,7 @@ def get_index(event):
     index_before=index
 
     n = event.widget.get(index)
+    n_old = n
     value.set(n)
     select_one_image(n)
     print("get_index=" + n)
@@ -116,7 +119,25 @@ def view_image():
 
     sub = tkinter.Tk()
     sub.title("画像回転するには同じファイルを押下してください")  
-    sub.geometry("800x500")
+    sub.geometry("800x600")
+
+
+
+    button9 = tk.Button(sub, text = '拡大', command=sizeup)
+    button9.grid(row=0, column=1)  
+    button9.place(x=700, y=480) 
+
+    button10 = tk.Button(sub, text = '縮小', command=sizedown)
+    button10.grid(row=0, column=1)  
+    button10.place(x=700, y=510) 
+
+
+
+
+
+
+
+
     list_disp(filenames,sub)
 
 
@@ -133,7 +154,7 @@ def select_one_image(n):
     root_one.geometry("1x1")
 
     txt2 = tk.Entry(width=50)
-    txt2.place(x=0, y=400)
+    txt2.place(x=20, y=500)
     img2 = Image.open(n)
     before_x, before_y = img2.size[0], img2.size[1]
     x = int(round(float(300 / float(before_y) * float(before_x))))
@@ -151,7 +172,7 @@ def select_one_image(n):
 
 
 
-    canvas = tkinter.Canvas(width=500, height=400)
+    canvas = tkinter.Canvas(width=600, height=500)
     canvas.place(x=0, y=0)
     item = canvas.create_image(30, 30, image=img2, anchor=tkinter.NW)
     canvas.itemconfig(item,image=img2)
@@ -174,7 +195,22 @@ def list_disp(filenames,sub):
     listbox.pack(side=tk.LEFT)
     listbox.bind("<<ListboxSelect>>", get_index)
  
- 
+
+def sizeup():
+    global sizerate
+    global n_old
+    sizerate = float(sizerate) + 0.1
+    select_one_image(n_old)
+
+
+def sizedown():
+    global sizerate
+    global n_old
+    sizerate = float(sizerate) - 0.1
+    select_one_image(n_old)
+
+
+
 root_main= tkinter.Tk()  
 image_gui(root_main)  
 root_main.title("rootです")  
