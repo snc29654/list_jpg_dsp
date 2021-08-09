@@ -115,7 +115,7 @@ def view_image():
 
 
     sub = tkinter.Tk()
-    sub.title("subです")  
+    sub.title("画像回転するには同じファイルを押下してください")  
     sub.geometry("800x500")
     list_disp(filenames,sub)
 
