@@ -29,6 +29,8 @@ sizerate = 1.0
 filenames =[]
 select_file=[]
 
+angle=0
+
 #最初の画面のクラス
 class image_gui():  
     imgs = []
@@ -90,10 +92,13 @@ class image_gui():
         root_main.destroy()
 
 
-
-
  
 def get_index(event):
+    global angle
+
+    angle += 90
+    
+
     value = tkinter.StringVar()
  
     index = event.widget.curselection()
@@ -121,7 +126,7 @@ def view_image():
 
 
 def select_one_image(n):
-
+    global angle
     root_one = tkinter.Tk()
     root_one.title("root_oneです")  
     root_one.geometry("1x1")
@@ -133,7 +138,18 @@ def select_one_image(n):
     x = int(round(float(300 / float(before_y) * float(before_x))))
     y = 300
     img2.thumbnail((x*float(sizerate), y*float(sizerate)), Image.ANTIALIAS)
+
+    img2 = img2.rotate(
+        angle,
+        expand=True
+    )
+
+
     img2 = ImageTk.PhotoImage(img2)
+
+
+
+
     canvas = tkinter.Canvas(width=500, height=400)
     canvas.place(x=0, y=0)
     item = canvas.create_image(30, 30, image=img2, anchor=tkinter.NW)
