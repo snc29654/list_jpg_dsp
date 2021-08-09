@@ -91,18 +91,19 @@ class image_gui():
     def quit(self):
         root_main.destroy()
 
-
+index_before = 0
  
 def get_index(event):
     global angle
-
-    angle += 90
-    
+    global index_before   
 
     value = tkinter.StringVar()
  
     index = event.widget.curselection()
- 
+    if (index_before==index):
+        angle += 90
+    index_before=index
+
     n = event.widget.get(index)
     value.set(n)
     select_one_image(n)
