@@ -49,7 +49,7 @@ class image_gui():
         print(str(ret))
         os.chdir(str(ret))
         filenames = glob.glob('*.jpg')
-        textExample.insert(tkinter.END,filenames)
+        self.textout()     
 
     def button3_clicked(self):  
         global filenames
@@ -57,7 +57,13 @@ class image_gui():
         fTyp = [('', '*')] 
         iDir = os.path.abspath(os.path.dirname(__file__)) 
         filenames = tkFileDialog.askopenfilenames(filetypes= [("JPEG", ".jpg") ], initialdir=iDir)
+        self.textout()     
+
+    def textout(self):  
+        global filenames
+        
         textExample.insert(tkinter.END,filenames)
+
 
     def quit(self):
         root_main.destroy()
