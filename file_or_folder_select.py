@@ -49,6 +49,7 @@ class image_gui():
         print(str(ret))
         os.chdir(str(ret))
         filenames = glob.glob('*.jpg')
+        filenames.extend( glob.glob('*.txt'))
         self.textout()     
 
     def button3_clicked(self):  
@@ -56,7 +57,7 @@ class image_gui():
         
         fTyp = [('', '*')] 
         iDir = os.path.abspath(os.path.dirname(__file__)) 
-        filenames = tkFileDialog.askopenfilenames(filetypes= [("JPEG", ".jpg") ], initialdir=iDir)
+        filenames = tkFileDialog.askopenfilenames(filetypes= [("JPEG", ".jpg"),("TEXT", ".txt") ], initialdir=iDir)
         self.textout()     
 
     def textout(self):  
