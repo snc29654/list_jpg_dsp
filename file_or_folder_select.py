@@ -61,8 +61,8 @@ class image_gui():
 
     def textout(self):  
         global filenames
-        
-        textExample.insert(tkinter.END,filenames)
+        for file in filenames:
+            textExample.insert(tkinter.END,file+"\n")
 
 
     def quit(self):
