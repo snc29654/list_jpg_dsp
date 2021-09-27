@@ -96,7 +96,7 @@ image_gui(root_main)
 root_main.title("ファイル名を出力するだけ")  
 root_main.geometry("1000x600") 
 
-textExample=ScrolledText(root_main, height=35,width=120, wrap=tkinter.CHAR)
+textExample=ScrolledText(root_main, height=35,width=120, wrap=tkinter.CHAR,bg="lightgreen")
 textExample.pack()
 textExample.place(x=90, y=70)
 
