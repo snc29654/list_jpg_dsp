@@ -41,14 +41,11 @@ class image_gui():
         button1.grid(row=0, column=1)  
         button1.place(x=670, y=12) 
 
-        button3= Button(root_main, text=u'ファイル選択', command=self.button3_clicked)  
+        button3= Button(root_main, text=u'ファイル   選択', command=self.button3_clicked)  
         button3.grid(row=0, column=1)  
         button3.place(x=670, y=42) 
 
 
-        button2 = tk.Button(root_main, text = '実行', command=self.quit)
-        button2.grid(row=0, column=1)  
-        button2.place(x=770, y=12) 
 
 
         #文字色、背景色、サイズ、フォントを指定。
@@ -73,7 +70,7 @@ class image_gui():
         #filenames = []
         filenames = glob.glob('*.jpg')
         print(filenames)
-
+        self.quit()
 
     def button3_clicked(self):  
         global filenames
@@ -87,6 +84,7 @@ class image_gui():
         iDir = os.path.abspath(os.path.dirname(__file__)) 
         filenames = tkFileDialog.askopenfilenames(filetypes= [("Image file", ".bmp .png .jpg .tif"), ("Bitmap", ".bmp"), ("PNG", ".png"), ("JPEG", ".jpg"), ("Tiff", ".tif") ], initialdir=iDir)
         print(filenames)
+        self.quit()
 
 
     def quit(self):
