@@ -54,9 +54,10 @@ class image_gui():
         os.chdir(str(ret))
         if(combovalue=="jpg"):
             filenames = glob.glob('*.jpg')
+            self.textoutjpg()     
         if(combovalue=="txt"):
             filenames = glob.glob('*.txt')
-        self.textout()     
+            self.textouttxt()     
 
     def button3_clicked(self):  
         global filenames
@@ -65,18 +66,27 @@ class image_gui():
         iDir = os.path.abspath(os.path.dirname(__file__)) 
         if(combovalue=="jpg"):
             filenames = tkFileDialog.askopenfilenames(filetypes= [("JPEG", ".jpg")], initialdir=iDir)
+            self.textoutjpg()     
         if(combovalue=="txt"):
             filenames = tkFileDialog.askopenfilenames(filetypes= [("TEXT", ".txt") ], initialdir=iDir)
-        self.textout()     
+            self.textouttxt()     
 
     def button4_clicked(self):  
         textExample.delete("1.0",tkinter.END)
 
-    def textout(self):  
+    def textoutjpg(self):  
         global filenames
         for file in filenames:
             textExample.insert(tkinter.END,file+"\n")
 
+    def textouttxt(self):  
+        global filenames
+        for file in filenames:
+            textExample.insert(tkinter.END,file+"\n")
+
+            f = open(file, 'r')
+            textExample.insert(tkinter.END,f.read()+"\n")
+            f.close()
 
     def quit(self):
         root_main.destroy()
