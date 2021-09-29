@@ -31,6 +31,7 @@ select_file=[]
 class image_gui():  
     imgs = []
     def __init__(self, main):  
+        self.combovalue = "jpg"
         
         button1 = Button(root_main, text=u'フォルダー選択', command=self.button1_clicked)  
         button1.grid(row=0, column=1)  
@@ -52,17 +53,16 @@ class image_gui():
 
 
     def button1_clicked(self):  
-        global combovalue
 
         global filenames
         ini_dir = 'C:'
         ret = tkinter.filedialog.askdirectory(initialdir=ini_dir, title='file dialog test', mustexist = True)
         print(str(ret))
         os.chdir(str(ret))
-        if(combovalue=="jpg"):
+        if(self.combovalue=="jpg"):
             filenames = glob.glob('*.jpg')
             self.textoutjpg()     
-        if(combovalue=="txt"):
+        if(self.combovalue=="txt"):
             filenames = glob.glob('*.txt')
             self.textouttxt()     
 
@@ -71,10 +71,10 @@ class image_gui():
 
         fTyp = [('', '*')] 
         iDir = os.path.abspath(os.path.dirname(__file__)) 
-        if(combovalue=="jpg"):
+        if(self.combovalue=="jpg"):
             filenames = tkFileDialog.askopenfilenames(filetypes= [("JPEG", ".jpg")], initialdir=iDir)
             self.textoutjpg()     
-        if(combovalue=="txt"):
+        if(self.combovalue=="txt"):
             filenames = tkFileDialog.askopenfilenames(filetypes= [("TEXT", ".txt") ], initialdir=iDir)
             self.textouttxt()     
 
@@ -98,18 +98,16 @@ class image_gui():
     def quit(self):
         root_main.destroy()
 
+    def show_selected(self,event):       #eventを引数に
+        self.combovalue=test_combobox.get()
+        print(self.combovalue)  #選択した値を表示
 
-combovalue = "jpg"
 
-def show_selected(event):       #eventを引数に
-    global combovalue
-    combovalue=test_combobox.get()
-    print(combovalue)  #選択した値を表示
 
 
 
 root_main= tkinter.Tk()  
-image_gui(root_main)  
+IG=image_gui(root_main)  
 root_main.title("ファイル名を出力するだけ")  
 root_main.geometry("1200x600") 
 
@@ -124,7 +122,7 @@ test_combobox = ttk.Combobox(
 #値選択時に発生するイベントと関数を紐づけ
 test_combobox.bind(
     '<<ComboboxSelected>>',     #選択時に発生するイベント
-    show_selected,              #呼び出す関数
+    IG.show_selected,              #呼び出す関数
 )
 
 test_combobox.current(0)
