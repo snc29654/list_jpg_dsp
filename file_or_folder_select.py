@@ -123,7 +123,7 @@ class image_gui():
 root_main= tkinter.Tk()  
 image_gui(root_main)  
 root_main.title("ファイル名を出力するだけ")  
-root_main.geometry("1200x600") 
+root_main.geometry("1200x650") 
 
 
 
