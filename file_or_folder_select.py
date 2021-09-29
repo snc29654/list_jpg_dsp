@@ -40,7 +40,7 @@ class image_gui():
         button3.grid(row=0, column=1)  
         button3.place(x=50, y=42) 
 
-        button4= Button(root_main, text=u'クリア', command=self.button4_clicked)  
+        button4= Button(root_main, text=u'クリア', command=self.button4_clicked,bg='#f0e68c')  
         button4.grid(row=0, column=1)  
         button4.place(x=150, y=12) 
 
@@ -104,12 +104,12 @@ def show_selected(event):       #eventを引数に
 root_main= tkinter.Tk()  
 image_gui(root_main)  
 root_main.title("ファイル名を出力するだけ")  
-root_main.geometry("1000x600") 
+root_main.geometry("1200x600") 
 
-textExample=ScrolledText(root_main, height=35,width=120, wrap=tkinter.CHAR,bg="lightgreen")
+textExample=ScrolledText(root_main, height=22,width=90, wrap=tkinter.CHAR,bg="lightgreen")
 textExample.pack()
 textExample.place(x=90, y=70)
-
+textExample.config(font=24)
 textExample.delete("1.0",tkinter.END)
 
 
