@@ -24,7 +24,6 @@ import tkinter as tk
 from tkinter import font
 from tkinter.scrolledtext import ScrolledText
 
-filenames =[]
 select_file=[]
 
 #最初の画面のクラス
@@ -32,6 +31,7 @@ class image_gui():
     imgs = []
     def __init__(self, main):  
         self.combovalue = "jpg"
+        self.filenames =[]
         
         button1 = Button(root_main, text=u'フォルダー選択', command=self.button1_clicked)  
         button1.grid(row=0, column=1)  
@@ -54,41 +54,37 @@ class image_gui():
 
     def button1_clicked(self):  
 
-        global filenames
         ini_dir = 'C:'
         ret = tkinter.filedialog.askdirectory(initialdir=ini_dir, title='file dialog test', mustexist = True)
         print(str(ret))
         os.chdir(str(ret))
         if(self.combovalue=="jpg"):
-            filenames = glob.glob('*.jpg')
+            self.filenames = glob.glob('*.jpg')
             self.textoutjpg()     
         if(self.combovalue=="txt"):
-            filenames = glob.glob('*.txt')
+            self.filenames = glob.glob('*.txt')
             self.textouttxt()     
 
     def button3_clicked(self):  
-        global filenames
 
         fTyp = [('', '*')] 
         iDir = os.path.abspath(os.path.dirname(__file__)) 
         if(self.combovalue=="jpg"):
-            filenames = tkFileDialog.askopenfilenames(filetypes= [("JPEG", ".jpg")], initialdir=iDir)
+            self.filenames = tkFileDialog.askopenfilenames(filetypes= [("JPEG", ".jpg")], initialdir=iDir)
             self.textoutjpg()     
         if(self.combovalue=="txt"):
-            filenames = tkFileDialog.askopenfilenames(filetypes= [("TEXT", ".txt") ], initialdir=iDir)
+            self.filenames = tkFileDialog.askopenfilenames(filetypes= [("TEXT", ".txt") ], initialdir=iDir)
             self.textouttxt()     
 
     def button4_clicked(self):  
         self.textExample.delete("1.0",tkinter.END)
 
     def textoutjpg(self):  
-        global filenames
-        for file in filenames:
+        for file in self.filenames:
             self.textExample.insert(tkinter.END,file+"\n")
 
     def textouttxt(self):  
-        global filenames
-        for file in filenames:
+        for file in self.filenames:
             self.textExample.insert(tkinter.END,file+"\n")
 
             f = open(file, 'r')
