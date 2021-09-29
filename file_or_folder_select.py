@@ -33,21 +33,21 @@ class image_gui():
         self.combovalue = "jpg"
         self.filenames =[]
         
-        button1 = Button(root_main, text=u'フォルダー選択', command=self.button1_clicked)  
+        button1 = Button(root_main, text=u'フォルダー選択', font=24,command=self.button1_clicked)  
         button1.grid(row=0, column=1)  
         button1.place(x=50, y=12) 
 
-        button3= Button(root_main, text=u'ファイル   選択', command=self.button3_clicked)  
+        button3= Button(root_main, text=u'ファイル選択', font=24,command=self.button3_clicked)  
         button3.grid(row=0, column=1)  
-        button3.place(x=50, y=42) 
+        button3.place(x=50, y=50) 
 
-        button4= Button(root_main, text=u'クリア', command=self.button4_clicked,bg='#f0e68c')  
+        button4= Button(root_main, text=u'クリア', font=24,command=self.button4_clicked,bg='#f0e68c')  
         button4.grid(row=0, column=1)  
-        button4.place(x=150, y=12) 
+        button4.place(x=250, y=12) 
 
         self.textExample=ScrolledText(root_main, height=22,width=90, wrap=tkinter.CHAR,bg="lightgreen")
         self.textExample.pack()
-        self.textExample.place(x=90, y=70)
+        self.textExample.place(x=90, y=100)
         self.textExample.config(font=24)
         self.textExample.delete("1.0",tkinter.END)
 
