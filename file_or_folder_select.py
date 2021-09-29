@@ -44,6 +44,13 @@ class image_gui():
         button4.grid(row=0, column=1)  
         button4.place(x=150, y=12) 
 
+        self.textExample=ScrolledText(root_main, height=22,width=90, wrap=tkinter.CHAR,bg="lightgreen")
+        self.textExample.pack()
+        self.textExample.place(x=90, y=70)
+        self.textExample.config(font=24)
+        self.textExample.delete("1.0",tkinter.END)
+
+
     def button1_clicked(self):  
         global combovalue
 
@@ -72,20 +79,20 @@ class image_gui():
             self.textouttxt()     
 
     def button4_clicked(self):  
-        textExample.delete("1.0",tkinter.END)
+        self.textExample.delete("1.0",tkinter.END)
 
     def textoutjpg(self):  
         global filenames
         for file in filenames:
-            textExample.insert(tkinter.END,file+"\n")
+            self.textExample.insert(tkinter.END,file+"\n")
 
     def textouttxt(self):  
         global filenames
         for file in filenames:
-            textExample.insert(tkinter.END,file+"\n")
+            self.textExample.insert(tkinter.END,file+"\n")
 
             f = open(file, 'r')
-            textExample.insert(tkinter.END,f.read()+"\n")
+            self.textExample.insert(tkinter.END,f.read()+"\n")
             f.close()
 
     def quit(self):
@@ -106,11 +113,6 @@ image_gui(root_main)
 root_main.title("ファイル名を出力するだけ")  
 root_main.geometry("1200x600") 
 
-textExample=ScrolledText(root_main, height=22,width=90, wrap=tkinter.CHAR,bg="lightgreen")
-textExample.pack()
-textExample.place(x=90, y=70)
-textExample.config(font=24)
-textExample.delete("1.0",tkinter.END)
 
 
 item_list = ['jpg', 'txt']
