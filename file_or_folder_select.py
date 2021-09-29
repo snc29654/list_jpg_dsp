@@ -52,6 +52,24 @@ class image_gui():
         self.textExample.delete("1.0",tkinter.END)
 
 
+        item_list = ['jpg', 'txt']
+        self.test_combobox = ttk.Combobox(
+            master=root_main,
+            values=item_list,
+            )
+
+        #値選択時に発生するイベントと関数を紐づけ
+        self.test_combobox.bind(
+            '<<ComboboxSelected>>',     #選択時に発生するイベント
+            self.show_selected,              #呼び出す関数
+        )
+
+        self.test_combobox.current(0)
+        self.test_combobox.pack()
+
+
+
+
     def button1_clicked(self):  
 
         ini_dir = 'C:'
@@ -95,7 +113,7 @@ class image_gui():
         root_main.destroy()
 
     def show_selected(self,event):       #eventを引数に
-        self.combovalue=test_combobox.get()
+        self.combovalue=self.test_combobox.get()
         print(self.combovalue)  #選択した値を表示
 
 
@@ -103,26 +121,11 @@ class image_gui():
 
 
 root_main= tkinter.Tk()  
-IG=image_gui(root_main)  
+image_gui(root_main)  
 root_main.title("ファイル名を出力するだけ")  
 root_main.geometry("1200x600") 
 
 
-
-item_list = ['jpg', 'txt']
-test_combobox = ttk.Combobox(
-    master=root_main,
-    values=item_list,
-    )
-
-#値選択時に発生するイベントと関数を紐づけ
-test_combobox.bind(
-    '<<ComboboxSelected>>',     #選択時に発生するイベント
-    IG.show_selected,              #呼び出す関数
-)
-
-test_combobox.current(0)
-test_combobox.pack()
 
 
 
