@@ -24,6 +24,9 @@ from tkinter import filedialog as tkFileDialog
 import tkinter as tk
 from tkinter import font
 
+        
+
+
 
 #最初の画面のクラス
 class image_gui():  
@@ -54,6 +57,13 @@ class image_gui():
         label4.place(x=400, y=28) 
 
 
+    def key_handler(self,e):
+    
+        print(e.keycode)
+        if(e.keycode==38):
+            self.sizeup()
+        if(e.keycode==40):
+            self.sizedown()
 
     def button1_clicked(self):  
         self.sizerate =txt4.get()
@@ -124,11 +134,11 @@ class image_gui():
 
 
 
-        button9 = tk.Button(sub, text = '拡大', command=self.sizeup)
+        button9 = tk.Button(sub, text = '拡大（↑）', command=self.sizeup)
         button9.grid(row=0, column=1)  
         button9.place(x=700, y=480) 
 
-        button10 = tk.Button(sub, text = '縮小', command=self.sizedown)
+        button10 = tk.Button(sub, text = '縮小（↓）', command=self.sizedown)
         button10.grid(row=0, column=1)  
         button10.place(x=700, y=510) 
 
@@ -143,6 +153,7 @@ class image_gui():
 
 
 
+        sub.bind("<KeyPress>", self.key_handler)
         sub.mainloop()
  
  
