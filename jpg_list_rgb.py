@@ -34,6 +34,7 @@ class image_gui():
     def __init__(self, main):  
         self.index_before = 0
         self.sizerate=1.0
+        self.raterate=1.0
         self.n_old=[]
         self.angle=0
         self.filenames =[]
@@ -64,6 +65,14 @@ class image_gui():
             self.sizeup()
         if(e.keycode==40):
             self.sizedown()
+
+        print(e.keycode)
+        if(e.keycode==39):
+            self.rateup()
+        if(e.keycode==37):
+            self.ratedown()
+
+
 
     def button1_clicked(self):  
         self.sizerate =txt4.get()
@@ -142,6 +151,13 @@ class image_gui():
         button10.grid(row=0, column=1)  
         button10.place(x=700, y=510) 
 
+        button11 = tk.Button(sub, text = '荒く（->）', command=self.rateup)
+        button11.grid(row=0, column=1)  
+        button11.place(x=700, y=540) 
+
+        button12 = tk.Button(sub, text = '細かく（<-）', command=self.ratedown)
+        button12.grid(row=0, column=1)  
+        button12.place(x=700, y=570) 
 
 
 
@@ -172,6 +188,21 @@ class image_gui():
         self.sizerate = float(self.sizerate) - 0.1
         self.select_one_rgb(self.n_old)
 
+
+    def rateup(self):
+        print(self.raterate)
+        self.raterate = float(self.raterate) + 1
+        self.select_one_rgb(self.n_old)
+
+
+    def ratedown(self):
+        print(self.raterate)
+        if(self.raterate >1 ):
+            self.raterate = float(self.raterate) - 1
+        self.select_one_rgb(self.n_old)
+
+
+
     def select_one_rgb(self,n):
         root_one = tkinter.Tk()
         root_one.title("root_oneです")  
@@ -200,10 +231,9 @@ class image_gui():
 
         print(width)
         print(height)
-        rate=2
         for x in range(width):
             for y in range(height):
-                if((int(y/50))%rate)==0:
+                if((int(y/5))%self.raterate)==0:
                         r, g, b = image2.getpixel((x, y))
                 else:
                     pass
