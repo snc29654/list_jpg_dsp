@@ -239,7 +239,7 @@ class image_gui():
                     pass
                 image2.putpixel((x, y), (r, g, b))
 
-
+        image2.save("modify.jpg")
 
         img2 = ImageTk.PhotoImage(image2)
 
