@@ -32,6 +32,8 @@ from tkinter import font
 class image_gui():  
     imgs = []
     def __init__(self, main):  
+        self.save_flag = 0;
+
         self.index_before = 0
         self.sizerate=1.0
         self.raterate=1.0
@@ -139,7 +141,7 @@ class image_gui():
 
         sub = tkinter.Tk()
         sub.title("画像回転するには同じファイルを押下してください")  
-        sub.geometry("800x600")
+        sub.geometry("800x650")
 
 
 
@@ -159,6 +161,10 @@ class image_gui():
         button12.grid(row=0, column=1)  
         button12.place(x=700, y=570) 
 
+
+        button13 = tk.Button(sub, text = 'ファイル保存', command=self.savefile)
+        button13.grid(row=0, column=1)  
+        button13.place(x=500, y=570) 
 
 
 
@@ -202,6 +208,12 @@ class image_gui():
         self.select_one_rgb(self.n_old)
 
 
+    def savefile(self):
+        self.save_flag = 1;
+        self.select_one_rgb(self.n_old)
+
+
+
 
     def select_one_rgb(self,n):
         root_one = tkinter.Tk()
@@ -209,7 +221,7 @@ class image_gui():
         root_one.geometry("1x1")
 
         txt2 = tk.Entry(width=50)
-        txt2.place(x=20, y=500)
+        txt2.place(x=20, y=600)
         img2 = Image.open(n)
         before_x, before_y = img2.size[0], img2.size[1]
         x = int(round(float(300 / float(before_y) * float(before_x))))
@@ -238,8 +250,9 @@ class image_gui():
                 else:
                     pass
                 image2.putpixel((x, y), (r, g, b))
-
-        image2.save("modify.jpg")
+        if (self.save_flag==1):
+            image2.save("modify.jpg")
+            self.save_flag=0
 
         img2 = ImageTk.PhotoImage(image2)
 
@@ -258,7 +271,7 @@ class image_gui():
 root_main= tkinter.Tk()  
 c=image_gui(root_main)  
 root_main.title("rootです")  
-root_main.geometry("850x300") 
+root_main.geometry("850x100") 
 
 
 txt4 = tkinter.Entry(width=10)
