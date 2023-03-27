@@ -160,9 +160,9 @@ class image_gui():
 
 
     def select_one_image(self,n):
-        root_one = tkinter.Tk()
-        root_one.title("root_oneです")  
-        root_one.geometry("1x1")
+        #root_one = tkinter.Tk()
+        #root_one.title("root_oneです")  
+        #root_one.geometry("1x1")
 
         txt2 = tk.Entry(width=50)
         txt2.place(x=20, y=500)
@@ -189,8 +189,8 @@ class image_gui():
         canvas.itemconfig(item,image=img2)
         txt2.delete(0, tk.END)
         txt2.insert(tk.END,n)
-        root_one.after(10, lambda: root_one.destroy())
-        root_one.mainloop()
+        #root_main.after(10, lambda: root_main.destroy())
+        root_main.mainloop()
 
 
  
