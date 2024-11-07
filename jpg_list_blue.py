@@ -251,7 +251,7 @@ class image_gui():
                     pass
                 image2.putpixel((x, y), (0, 0, b))
         if (self.save_flag==1):
-            image2.save("modify.jpg")
+            image2.save("../modify.jpg")
             self.save_flag=0
 
         img2 = ImageTk.PhotoImage(image2)
